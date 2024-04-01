@@ -1,5 +1,5 @@
 ---
-title: "Untitled"
+title: "ESG Rating Visualization"
 output: 
   flexdashboard::flex_dashboard:
     orientation: columns
@@ -10,7 +10,7 @@ output:
 library(flexdashboard)
 library(tidyverse)
 library(viridis)
-df <- read_csv('SP 500 ESG Risk Ratings.csv')
+df <- read_csv('data/SP 500 ESG Risk Ratings.csv')
 df_clean <- df[complete.cases(df),]
 ```
 
@@ -37,14 +37,7 @@ Column {data-width=350}
 ### Chart B
 
 ```{r}
-top_10 <- df %>% arrange(desc(`Total ESG Risk score`)) %>% head(10)
-top_10 %>% ggplot(aes(x = reorder(Name, `Total ESG Risk score`), y = `Total ESG Risk score`)) +
-  geom_bar(stat = 'identity') +
-  geom_text(aes(label=`Total ESG Risk score`), vjust = -0.2 , color='black' ) + 
-  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
-  labs(title = "Top 10 Performers by ESG Risk Level",
-       x = "Companies",
-       y = "Total ESG Risk Score")
+
 ```
 
 ### Chart C
