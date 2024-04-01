@@ -31,18 +31,45 @@ sector_wise_risk %>% ggplot(aes(x = reorder(Sector, mean_ESG_Risk), y=mean_ESG_R
        y = "Average Total ESG Risk Score")
 ```
 
-Column {data-width=350}
+Column {data-width=350 .tabset .tabset-fade}
 -----------------------------------------------------------------------
 
-### Chart B
+### Environment Risk Score
 
 ```{r}
+calculate_mean <- function(df, column) {
+  df %>%
+    group_by(Sector) %>%
+    summarize(mean_score = mean(.data[[column]]), .groups = 'drop')
+}
+
+risk_columns <- c("Environment Risk Score","Social Risk Score","Governance Risk Score")
+mean_ESG <- risk_columns %>% map(~calculate_mean(df_clean,.x))  
+
+names(mean_ESG) <- risk_columns
+
+plot_fun <- function(df) {
+  df %>% ggplot(aes(x = reorder(Sector, mean_score), y = mean_score)) +
+    geom_bar(stat = 'identity') +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+    labs(x = "Sector")
+} 
+```
+
+
+```{r}
+plot_fun(mean_ESG$`Environment Risk Score`)
 
 ```
 
-### Chart C
+### Social Risk Score
 
 ```{r}
-
+plot_fun(mean_ESG$`Social Risk Score`)
 ```
 
+### Governance Risk Score
+
+```{r}
+plot_fun(mean_ESG$`Governance Risk Score`)
+```
