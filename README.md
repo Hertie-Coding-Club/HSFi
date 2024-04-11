@@ -3,6 +3,8 @@
 
 ## 1. ESG Rating Visualization (location: project/esg_rating) 
 
+Contributors: Minho Kang , Jackson Luckey, Hermia Chan, Krys Thomas, Iana Lanceta
+
 This project is based on the first "Sustainable Finance with Data Science" workshop in April, 9th, 2024 at the Hertie School. It tackles visualization on the S&P 500 ESG Rating data using R. Specifically, the ggplot and flexdahsboard are main libraraies. The result of this project is below.
 
 <img width="500" height="300" alt="esg_flexdash" src="https://github.com/Hertie-Coding-Club/HSFi/assets/90128043/918d0b1c-a08f-4c43-b3a9-7de50ec0196d">
